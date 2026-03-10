@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private Rigidbody2D rb;
+    
+    [SerializeField] private SpriteRenderer render;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +31,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
+        if(horizontalInpunt!= 0)
+        {
+            render.flipX = horizontalMovement < 0;
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)
